@@ -1,0 +1,53 @@
+{
+  "name": "job-search-assistant",
+  "version": "1.0.0",
+  "displayName": "Job Search Assistant",
+  "description": "Complete job search workflow management with multi-platform search, application tracking, resume tailoring, and follow-up automation",
+  "author": {
+    "name": "Duncan",
+    "email": "duncanapm@gmail.com",
+    "url": "https://github.com/duncanapm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duncanapm/job-search-assistant-plugin"
+  },
+  "homepage": "https://github.com/duncanapm/job-search-assistant-plugin",
+  "bugs": {
+    "url": "https://github.com/duncanapm/job-search-assistant-plugin/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "job-search",
+    "career",
+    "resume",
+    "applications",
+    "recruiting",
+    "interview",
+    "indeed",
+    "dice"
+  ],
+  "category": "productivity",
+  "skills": [
+    {
+      "name": "job-search-assistant",
+      "path": "skills/job-search-assistant",
+      "description": "Main job search workflow management skill"
+    }
+  ],
+  "mcps": [
+    {
+      "name": "indeed",
+      "required": false,
+      "description": "Search jobs on Indeed"
+    },
+    {
+      "name": "dice",
+      "required": false,
+      "description": "Search tech jobs on Dice"
+    }
+  ],
+  "requirements": {
+    "claude": ">=1.0.0"
+  }
+}
