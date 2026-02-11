@@ -166,7 +166,6 @@ MIT License - see [LICENSE](LICENSE) file
 
 - **GitHub Issues**: [Report bugs](https://github.com/duncanapm/jobflow/issues)
 - **Discussions**: [Ask questions](https://github.com/duncanapm/jobflow/discussions)
-- **Email**: duncanapm@gmail.com
 
 ## 🔄 Changelog
 
