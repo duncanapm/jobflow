@@ -1,0 +1,44 @@
+# Build outputs
+*.skill
+*.tar.gz
+*.zip
+dist/
+build/
+
+# Development
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg-info/
+venv/
+env/
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# OS
+Thumbs.db
+.Spotlight-V100
+.Trashes
