@@ -1,6 +1,6 @@
 ---
 name: jobflow
-description: Job search workflow - track applications, tailor resumes, automate follow-ups, prep interviews. Triggers on job hunting, resume, applications.
+description: Job search workflow - track applications, tailor resumes/CVs, automate follow-ups, prep interviews. Triggers on job hunting, resume, cv, applications.
 ---
 
 # JobFlow - Job Search Assistant
@@ -29,8 +29,8 @@ Creates organized folders for each application containing:
 - Interview notes
 - Any company research
 
-### 3. Resume Tailor (Suggestion Mode)
-Analyzes job postings and suggests specific improvements to your resume/cover letter:
+### 3. Resume/CV Tailor (Suggestion Mode)
+Analyzes job postings and suggests specific improvements to your resume/CV/cover letter:
 - Keywords to add from job description
 - Skills to emphasize
 - Experience to highlight
@@ -48,16 +48,18 @@ Manages follow-up timing and drafts:
 
 When a user says "help me with my job search", ask these clarifying questions:
 
-1. **Do you have a base resume/cover letter?** (needed for tailoring suggestions)
-2. **Where should I create the tracking spreadsheet and application folders?** (suggest a dedicated job-search folder)
-3. **What types of roles are you looking for?** (for search filtering)
+1. **What is your location preference?** (UK, US, remote, specific cities - critical for filtering relevant jobs)
+2. **What types of roles are you looking for?** (job titles, seniority level, industry)
+3. **Do you have a base resume/CV?** (needed for tailoring suggestions)
+4. **Where should I create the tracking spreadsheet and application folders?** (suggest a dedicated job-search folder)
+5. **Any other preferences?** (salary range, remote/hybrid/onsite, company size)
 
 Then set up the structure:
 ```
 job-search/
 ├── job-tracker.numbers (or .xlsx)
 ├── base-materials/
-│   ├── resume-master.docx
+│   ├── resume-master.docx (or cv-master.docx)
 │   └── cover-letter-template.docx
 └── applications/
     ├── company-a-position/
@@ -75,10 +77,11 @@ job-search/
 - "Look for remote data analyst positions"
 
 **Process:**
-1. Use MCP connectors (Indeed, Dice) to search multiple platforms
-2. Filter by location, salary, remote options, keywords
-3. Present top matches with: title, company, location, salary, posting date
-4. Ask which jobs to track or apply to
+1. **CRITICAL: Confirm user's location preference first** (if not already established)
+2. Use MCP connectors (Indeed, Dice) to search multiple platforms
+3. Filter by user's preferred location, salary, remote options, keywords
+4. Present top matches with: title, company, location, salary, posting date
+5. Ask which jobs to track or apply to
 
 ### Tracking an Application
 
@@ -95,16 +98,16 @@ job-search/
 5. Set follow-up reminder for 7 days out
 6. Confirm tracking is set up
 
-### Tailoring Resume/Cover Letter
+### Tailoring Resume/CV/Cover Letter
 
 **User request patterns:**
-- "Help me tailor my resume for this job"
+- "Help me tailor my resume/CV for this job"
 - "What should I change in my cover letter?"
 - "Customize my application for this role"
 
 **Process:**
 1. Read the job description (from link, text, or saved file)
-2. Read user's base resume
+2. Read user's base resume/CV
 3. Analyze the gap: required skills, keywords, experience emphasis
 4. **Provide suggestions in a markdown file** saved to the application folder:
    - "Add keyword 'Kubernetes' to Technical Skills section"
@@ -112,9 +115,9 @@ job-search/
    - "Reorder projects to put Y project first (matches their tech stack)"
    - "Include metric about Z accomplishment (they mention scale)"
 5. Ask if user wants to make changes or if they'd like you to create a draft
-6. If they want a draft, create tailored-resume.docx in the application folder
+6. If they want a draft, create tailored-resume.docx (or tailored-cv.docx) in the application folder
 
-**Critical: Never automatically replace their resume** - always provide suggestions first and get approval.
+**Critical: Never automatically replace their resume/CV** - always provide suggestions first and get approval.
 
 ### Following Up
 
@@ -193,23 +196,24 @@ Use conditional formatting to color-code statuses:
 ```
 User: I need to organize my job search
 Claude: I'll help you set up a complete job search system. First, a few questions:
-1. Do you have a base resume and cover letter I can work from?
-2. Where should I create your tracking spreadsheet and application folders?
-3. What type of roles are you targeting?
+1. What is your location preference? (e.g., UK, US, specific cities, remote)
+2. What type of roles are you targeting?
+3. Do you have a base resume/CV and cover letter I can work from?
+4. Where should I create your tracking spreadsheet and application folders?
 
 [After answers]
 Great! I'll create:
 - A tracking spreadsheet at [location]/job-tracker.xlsx
 - An applications folder to organize materials per company
-- A base-materials folder for your resume and cover letter templates
+- A base-materials folder for your resume/CV and cover letter templates
 
-Let's start by searching for jobs. What keywords and location should I use?
+I'll focus my job searches on [user's location preference]. Ready to start searching?
 ```
 
-**Example 2: Tailoring a resume**
+**Example 2: Tailoring a resume/CV**
 ```
-User: Help me tailor my resume for this Product Manager job at Meta
-Claude: [Reads job description and base resume]
+User: Help me tailor my CV for this Product Manager job at Meta
+Claude: [Reads job description and base CV]
 
 I've created tailoring-suggestions.md in your applications/meta-pm folder. Here are the key changes I recommend:
 
@@ -222,7 +226,7 @@ I've created tailoring-suggestions.md in your applications/meta-pm folder. Here 
 4. Emphasize cross-functional collaboration (mentioned in 2 bullet points)
 5. Add SQL to your technical skills if you have experience
 
-Would you like me to create a draft tailored resume with these changes, or will you make the edits yourself?
+Would you like me to create a draft tailored CV with these changes, or will you make the edits yourself?
 ```
 
 **Example 3: Follow-up check**
@@ -251,9 +255,9 @@ I've drafted follow-up emails for each in their application folders. Would you l
 - Use consistent folder naming: `company-name-position-title`
 - Date all follow-up drafts: `follow-up-2026-02-15.txt`
 
-**Resume Tailoring:**
+**Resume/CV Tailoring:**
 - Always provide suggestions before making changes
-- Keep the original resume structure unless user requests major restructuring
+- Keep the original resume/CV structure unless user requests major restructuring
 - Focus on keyword optimization and emphasis, not complete rewrites
 
 **Follow-up Timing:**
