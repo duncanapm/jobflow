@@ -1,21 +1,14 @@
 {
   "name": "jobflow",
   "version": "1.1.0",
-  "displayName": "JobFlow",
   "description": "Complete job search workflow management - from search to offer. Track applications, tailor resumes/CVs, automate follow-ups, and prep for interviews.",
   "author": {
     "name": "Duncan",
     "email": "duncanapm@gmail.com",
     "url": "https://github.com/duncanapm"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/duncanapm/jobflow"
-  },
+  "repository": "https://github.com/duncanapm/jobflow",
   "homepage": "https://github.com/duncanapm/jobflow",
-  "bugs": {
-    "url": "https://github.com/duncanapm/jobflow/issues"
-  },
   "license": "MIT",
   "keywords": [
     "jobflow",
@@ -27,27 +20,6 @@
     "interview",
     "workflow"
   ],
-  "category": "productivity",
-  "skills": [
-    {
-      "name": "jobflow",
-      "path": "skills/jobflow",
-      "description": "Main job search workflow management skill"
-    }
-  ],
-  "mcps": [
-    {
-      "name": "indeed",
-      "required": false,
-      "description": "Search jobs on Indeed"
-    },
-    {
-      "name": "dice",
-      "required": false,
-      "description": "Search tech jobs on Dice"
-    }
-  ],
-  "requirements": {
-    "claude": ">=1.0.0"
-  }
+  "commands": "./commands/",
+  "skills": "./skills/"
 }
