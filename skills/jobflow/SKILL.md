@@ -46,13 +46,19 @@ Manages follow-up timing and drafts:
 
 ## Quick Start Workflow
 
-When a user says "help me with my job search", ask these clarifying questions:
+When a user says "help me with my job search", ask these essential questions to get started:
 
-1. **What is your location preference?** (UK, US, remote, specific cities - critical for filtering relevant jobs)
-2. **What types of roles are you looking for?** (job titles, seniority level, industry)
-3. **Do you have a base resume/CV?** (needed for tailoring suggestions)
-4. **Where should I create the tracking spreadsheet and application folders?** (suggest a dedicated job-search folder)
-5. **Any other preferences?** (salary range, remote/hybrid/onsite, company size)
+1. **What country are you job searching in?** (e.g., United States, United Kingdom, Canada, Australia - critical for filtering relevant jobs)
+2. **What specific job title are you looking for to start?** (e.g., "Senior Software Engineer", "Product Manager", "Data Analyst" - you can add more role preferences later)
+3. **Where should I create the tracking spreadsheet and application folders?** (suggest ~/Documents/job-search or similar dedicated location)
+
+**That's it!** You can add additional preferences later:
+- More job titles or role types
+- Specific cities or remote-only filters
+- Salary ranges
+- Company size preferences
+- Remote/hybrid/onsite requirements
+- Your base resume/CV location
 
 Then set up the structure:
 ```
@@ -77,9 +83,9 @@ job-search/
 - "Look for remote data analyst positions"
 
 **Process:**
-1. **CRITICAL: Confirm user's location preference first** (if not already established)
+1. **CRITICAL: Confirm user's country first** (if not already established during onboarding)
 2. Use MCP connectors (Indeed, Dice) to search multiple platforms
-3. Filter by user's preferred location, salary, remote options, keywords
+3. Filter by user's preferred country/location, job title, and any additional preferences (salary, remote options, etc.)
 4. Present top matches with: title, company, location, salary, posting date
 5. Ask which jobs to track or apply to
 
@@ -195,19 +201,20 @@ Use conditional formatting to color-code statuses:
 **Example 1: Starting a job search**
 ```
 User: I need to organize my job search
-Claude: I'll help you set up a complete job search system. First, a few questions:
-1. What is your location preference? (e.g., UK, US, specific cities, remote)
-2. What type of roles are you targeting?
-3. Do you have a base resume/CV and cover letter I can work from?
-4. Where should I create your tracking spreadsheet and application folders?
+Claude: I'll help you set up a complete job search system. Just need 3 quick things:
+1. What country are you job searching in?
+2. What specific job title are you looking for to start? (e.g., "Senior Software Engineer")
+3. Where should I create your tracking spreadsheet and application folders?
 
-[After answers]
-Great! I'll create:
-- A tracking spreadsheet at [location]/job-tracker.xlsx
+User: United States, Senior Product Manager, ~/Documents/job-search
+Claude: Perfect! I'll create:
+- A tracking spreadsheet at ~/Documents/job-search/job-tracker.xlsx
 - An applications folder to organize materials per company
-- A base-materials folder for your resume/CV and cover letter templates
+- A base-materials folder for your resume/CV templates
 
-I'll focus my job searches on [user's location preference]. Ready to start searching?
+I'll focus searches on Senior Product Manager roles in the United States. Ready to start searching?
+
+(You can add more preferences like specific cities, salary range, or additional role titles anytime by just asking!)
 ```
 
 **Example 2: Tailoring a resume/CV**
