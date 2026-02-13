@@ -1,8 +1,8 @@
 {
   "name": "jobflow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "JobFlow",
-  "description": "Complete job search workflow management - from search to offer. Track applications, tailor resumes, automate follow-ups, and prep for interviews.",
+  "description": "Complete job search workflow management - from search to offer. Track applications, tailor resumes/CVs, automate follow-ups, and prep for interviews.",
   "author": {
     "name": "Duncan",
     "email": "duncanapm@gmail.com",
