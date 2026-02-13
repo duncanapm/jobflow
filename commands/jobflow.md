@@ -26,18 +26,21 @@ I'll immediately show you 5 matching jobs. Then you tell me how to refine — by
 ```
 Example:
   You: UK, Senior Sales Engineer
-  → I show 5 matching roles
-  You: Focus on AI Observability companies, pre-IPO
-  → I show 5 refined matches
-  You: Tell me more about Arize AI
-  → I dig into that company and role
-  You: I want to apply to that one
-  → I set up tracking and help you tailor your application
+  → I show 5 matching roles with quick triage
+  You: 1,3 interested, rest pass — too enterprise. Focus on AI Observability, pre-IPO
+  → I note your preferences, show 5 refined matches
+  You: 1 and 2 apply, 3 interested, pass on 4,5 — too early stage
+  → I set up applications for your picks, shortlist the maybe, refine for next round
 ```
 
 ---
 
 ## What You Can Ask Me To Do
+
+**Triage results quickly:**
+- ✅ Interested — shortlist for later
+- ❌ Pass — skip (tell me why to improve results)
+- 📋 Apply now — start application workflow
 
 **Refine your search:**
 - "Only remote roles"
@@ -48,8 +51,8 @@ Example:
 
 **Take action on a role:**
 - "Tell me more about [company]"
-- "I want to apply to this one"
-- "Add this to my tracker"
+- "Apply to [company]"
+- "Show my shortlist"
 
 **Application support:**
 - "Help me tailor my CV for this job"

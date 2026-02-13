@@ -53,9 +53,9 @@ When a user starts, ask only **two questions**:
 
 **That's it.** Do NOT ask about folders, spreadsheets, resume locations, or preferences upfront. Get straight to results.
 
-### Immediate Next Step: Show 5 Matching Jobs
+### Immediate Next Step: Show 5 Matching Jobs with Quick Triage
 
-As soon as you have country + job title, immediately search and present **5 matching jobs** in a concise format:
+As soon as you have country + job title, immediately search and present **5 matching jobs** with a quick-triage prompt so the user can rapidly sort them:
 
 ```
 Here are 5 Senior Sales Engineer roles in the UK:
@@ -65,6 +65,31 @@ Here are 5 Senior Sales Engineer roles in the UK:
 3. **New Relic** — Senior SE, Manchester (£80-105k)
 4. **Dynatrace** — Sales Engineer, London (£95-125k)
 5. **Elastic** — Senior Sales Engineer, Remote UK (£88-115k)
+
+Quick triage — for each, tell me:
+  ✅ Interested    ❌ Pass    📋 Apply now
+
+e.g. "1 ✅, 2 ❌, 3 ✅, 4 ❌, 5 📋" or just "1,3 interested, 5 apply, rest pass"
+```
+
+**How triage responses work:**
+- **✅ Interested** — Save to a shortlist for later. No tracking folder yet.
+- **❌ Pass** — Skip it, don't show again. Note the reason if given (helps refine future results).
+- **📋 Apply now** — Immediately set up tracking: create application folder, save job description, and begin the application workflow (resume tailoring, cover letter, etc.)
+
+The user can respond in any format — numbers, emojis, words, or a mix. Be flexible in parsing. Examples:
+- "1 and 3 look good, pass on the rest, apply to 5"
+- "1✅ 2❌ 3✅ 4❌ 5📋"
+- "interested in Datadog and New Relic, apply to Elastic, skip the others"
+
+After triage, summarize what happened:
+```
+Got it:
+  ✅ Shortlisted: Datadog, New Relic
+  📋 Applying: Elastic — setting up your application now
+  ❌ Passed: Splunk (noted), Dynatrace (noted)
+
+Want me to search for more, or start on your Elastic application?
 ```
 
 ### Then Refine Through Conversation
@@ -77,11 +102,13 @@ After showing initial results, let the user naturally narrow down. They might sa
 - "Series C or later"
 - "Show me more like Datadog and New Relic"
 
-Each time they refine, search again and show updated results. Build up their preferences organically through this back-and-forth rather than asking everything upfront.
+Each time they refine, search again and show updated results with the same triage prompt. Build up their preferences organically through this back-and-forth rather than asking everything upfront.
+
+Use pass reasons to improve results. If user passes on 3 jobs and says "too big / too corporate", factor that into future searches automatically.
 
 ### When to Set Up Tracking
 
-Only create the folder structure and spreadsheet when the user is ready to **act** on a job (e.g., "I want to apply to this one", "Track this", "Add this to my list"). At that point, suggest `~/job-search` as the default location and set up:
+Only create the folder structure and spreadsheet when the user **applies** to a job (📋 Apply now). At that point, automatically create `~/job-search` (or ask if first time) and set up:
 ```
 job-search/
 ├── job-tracker.numbers (or .xlsx)
@@ -93,6 +120,8 @@ job-search/
     ├── company-b-position/
     └── ...
 ```
+
+**Shortlisted jobs** (✅) are tracked in a lightweight list (in the spreadsheet or in memory) — no folder until the user decides to apply.
 
 ## Task-Based Workflows
 
@@ -237,10 +266,16 @@ Claude: Here are 5 Senior Sales Engineer roles in the UK:
 4. **Dynatrace** — Sales Engineer, London (£95-125k)
 5. **Elastic** — Senior Sales Engineer, Remote UK (£88-115k)
 
-Want to narrow these down? You can filter by market segment, company stage, location, salary, or anything else.
+Quick triage — for each, tell me:
+  ✅ Interested    ❌ Pass    📋 Apply now
+e.g. "1,3 interested, 5 apply, rest pass"
 
-User: Focus on AI Observability companies, pre-IPO only
-Claude: Here are 5 Senior Sales Engineer roles at pre-IPO AI Observability companies in the UK:
+User: 1 and 3 interested, rest pass — too enterprise. Focus on AI Observability, pre-IPO
+Claude: Got it:
+  ✅ Shortlisted: Datadog, New Relic
+  ❌ Passed: Splunk, Dynatrace, Elastic (too enterprise — noted, filtering smaller companies)
+
+Here are 5 Senior Sales Engineer roles at pre-IPO AI Observability companies in the UK:
 
 1. **Arize AI** — Senior Sales Engineer, Remote UK (£95-125k) — Series C
 2. **Weights & Biases** — Senior SE, London (£90-120k) — Series C
@@ -248,7 +283,18 @@ Claude: Here are 5 Senior Sales Engineer roles at pre-IPO AI Observability compa
 4. **Helicone** — Senior Sales Engineer, London (£100-130k) — Series A
 5. **Langfuse** — Sales Engineer, Remote UK (£80-105k) — Series A
 
-Any of these look interesting? I can dig deeper into any company, or keep refining.
+  ✅ Interested    ❌ Pass    📋 Apply now
+
+User: 1 and 2 apply, 3 interested, pass on 4 and 5 — too early stage
+Claude: Got it:
+  📋 Applying: Arize AI, Weights & Biases — setting up applications now
+  ✅ Shortlisted: Comet ML (added to your list with Datadog & New Relic)
+  ❌ Passed: Helicone, Langfuse (too early stage — noted, Series B+ from now on)
+
+Creating your job search workspace at ~/job-search...
+[Sets up folders, tracker, application folders for Arize AI and W&B]
+
+Your Arize AI and W&B application folders are ready. Want to start tailoring your CV for one of these?
 ```
 
 **Example 2: Tailoring a resume/CV**
