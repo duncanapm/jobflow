@@ -46,21 +46,42 @@ Manages follow-up timing and drafts:
 
 ## Quick Start Workflow
 
-When a user says "help me with my job search", ask these essential questions to get started:
+When a user starts, ask only **two questions**:
 
-1. **What country are you job searching in?** (e.g., United States, United Kingdom, Canada, Australia - critical for filtering relevant jobs)
-2. **What specific job title are you looking for to start?** (e.g., "Senior Software Engineer", "Product Manager", "Data Analyst" - you can add more role preferences later)
-3. **Where should I create the tracking spreadsheet and application folders?** (suggest ~/Documents/job-search or similar dedicated location)
+1. **What country are you in?** (e.g., UK, US, Canada, Australia)
+2. **Give me one job title to start with.** (e.g., "Senior Sales Engineer", "Product Manager")
 
-**That's it!** You can add additional preferences later:
-- More job titles or role types
-- Specific cities or remote-only filters
-- Salary ranges
-- Company size preferences
-- Remote/hybrid/onsite requirements
-- Your base resume/CV location
+**That's it.** Do NOT ask about folders, spreadsheets, resume locations, or preferences upfront. Get straight to results.
 
-Then set up the structure:
+### Immediate Next Step: Show 5 Matching Jobs
+
+As soon as you have country + job title, immediately search and present **5 matching jobs** in a concise format:
+
+```
+Here are 5 Senior Sales Engineer roles in the UK:
+
+1. **Datadog** — Senior Sales Engineer, London (£90-120k)
+2. **Splunk** — Senior Sales Engineer, Remote UK (£85-110k)
+3. **New Relic** — Senior SE, Manchester (£80-105k)
+4. **Dynatrace** — Sales Engineer, London (£95-125k)
+5. **Elastic** — Senior Sales Engineer, Remote UK (£88-115k)
+```
+
+### Then Refine Through Conversation
+
+After showing initial results, let the user naturally narrow down. They might say things like:
+- "Focus on AI Observability companies"
+- "Only pre-IPO companies"
+- "Remote only"
+- "£100k+ base"
+- "Series C or later"
+- "Show me more like Datadog and New Relic"
+
+Each time they refine, search again and show updated results. Build up their preferences organically through this back-and-forth rather than asking everything upfront.
+
+### When to Set Up Tracking
+
+Only create the folder structure and spreadsheet when the user is ready to **act** on a job (e.g., "I want to apply to this one", "Track this", "Add this to my list"). At that point, suggest `~/job-search` as the default location and set up:
 ```
 job-search/
 ├── job-tracker.numbers (or .xlsx)
@@ -81,13 +102,15 @@ job-search/
 - "Search for software engineer jobs in Seattle"
 - "Find product manager roles at tech companies"
 - "Look for remote data analyst positions"
+- "Show me AI Observability companies"
+- "Only pre-IPO startups"
 
 **Process:**
-1. **CRITICAL: Confirm user's country first** (if not already established during onboarding)
-2. Use MCP connectors (Indeed, Dice) to search multiple platforms
-3. Filter by user's preferred country/location, job title, and any additional preferences (salary, remote options, etc.)
-4. Present top matches with: title, company, location, salary, posting date
-5. Ask which jobs to track or apply to
+1. Use MCP connectors (Indeed, Dice) or web search to find matching roles
+2. Apply all accumulated filters (country, title, plus any refinements like market segment, company stage, remote preference)
+3. Present **5 results** with: company, title, location, salary range
+4. Wait for user to refine further or act on specific listings
+5. Each refinement round updates results — don't re-ask questions already answered
 
 ### Tracking an Application
 
@@ -200,21 +223,32 @@ Use conditional formatting to color-code statuses:
 
 **Example 1: Starting a job search**
 ```
-User: I need to organize my job search
-Claude: I'll help you set up a complete job search system. Just need 3 quick things:
-1. What country are you job searching in?
-2. What specific job title are you looking for to start? (e.g., "Senior Software Engineer")
-3. Where should I create your tracking spreadsheet and application folders?
+User: I need help with my job search
+Claude: Two quick questions to get started:
+1. What country are you in?
+2. Give me one job title to start with.
 
-User: United States, Senior Product Manager, ~/Documents/job-search
-Claude: Perfect! I'll create:
-- A tracking spreadsheet at ~/Documents/job-search/job-tracker.xlsx
-- An applications folder to organize materials per company
-- A base-materials folder for your resume/CV templates
+User: UK, Senior Sales Engineer
+Claude: Here are 5 Senior Sales Engineer roles in the UK:
 
-I'll focus searches on Senior Product Manager roles in the United States. Ready to start searching?
+1. **Datadog** — Senior Sales Engineer, London (£90-120k)
+2. **Splunk** — Senior Sales Engineer, Remote UK (£85-110k)
+3. **New Relic** — Senior SE, Manchester (£80-105k)
+4. **Dynatrace** — Sales Engineer, London (£95-125k)
+5. **Elastic** — Senior Sales Engineer, Remote UK (£88-115k)
 
-(You can add more preferences like specific cities, salary range, or additional role titles anytime by just asking!)
+Want to narrow these down? You can filter by market segment, company stage, location, salary, or anything else.
+
+User: Focus on AI Observability companies, pre-IPO only
+Claude: Here are 5 Senior Sales Engineer roles at pre-IPO AI Observability companies in the UK:
+
+1. **Arize AI** — Senior Sales Engineer, Remote UK (£95-125k) — Series C
+2. **Weights & Biases** — Senior SE, London (£90-120k) — Series C
+3. **Comet ML** — Sales Engineer, Remote UK (£85-110k) — Series B
+4. **Helicone** — Senior Sales Engineer, London (£100-130k) — Series A
+5. **Langfuse** — Sales Engineer, Remote UK (£80-105k) — Series A
+
+Any of these look interesting? I can dig deeper into any company, or keep refining.
 ```
 
 **Example 2: Tailoring a resume/CV**
